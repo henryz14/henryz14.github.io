@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAND ✰</title>
+    <style>
+        /* Estilo general del cuerpo */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            color: #ccc;
+        }
+
+        /* Menú de navegación estilo minimalista */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Estrella animada */
+        .star {
+            color: #ffcc00;
+            font-size: 6rem;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        /* Triángulo giratorio */
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 100px solid #ffcc00;
+            margin-top: 20px;
+            animation: rotate 5s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Botón de reproducción */
+        .btn-demo {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #ffcc00;
+            color: #111;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .btn-demo:hover {
+            background-color: #f94d6a;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .btn-demo:focus {
+            outline: none;
+        }
+
+        /* Pie de página */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #777;
+        }
+
+        /* Responsivo para móviles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+
+            .star {
+                font-size: 4rem;
+            }
+
+            .triangle {
+                border-left: 40px solid transparent;
+                border-right: 40px solid transparent;
+                border-bottom: 80px solid #ffcc00;
+            }
+
+            .btn-demo {
+                font-size: 1.2rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenido principal -->
+    <h1>BAND ✰</h1>
+    <h2>Music plays in everything, the sound is in your cerebellum, you stimulate too much and so do I</h2>
+
+    <!-- Estrella animada -->
+    <div class="star">✰</div>
+
+    <!-- Triángulo giratorio -->
+    <div class="triangle"></div>
+
+    <!-- Botón de reproducción -->
+    <button class="btn-demo" onclick="playAudio()">D-E-M-O</button>
+
+    <!-- Elemento de audio oculto que contiene el archivo de música -->
+    <audio id="audio-player" src="m1.mp3"></audio>
+
+    
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById('audio-player');
+            audio.play();
+        }
+    </script>
+
+</body>
+</html>
