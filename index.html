@@ -1,153 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeD</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      background: black;
-      animation: fondoCambio 2s infinite alternate;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✰</title>
+    <style>
+        /* Estilo general de la página */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: rgb(37, 37, 37);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: rgba(207, 194, 194, 0.904);
+            font-family: Arial, sans-serif;
+            position: relative;
+            transition: background-color 0.5s;
+        }
 
-    /* Botón interactivo */
-    button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(127, 0, 255, 0.75);
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 10;
-    }
+        /* Estilo del botón */
+        button {
+            padding: 20px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #004d00;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 1s ease;
+            z-index: 10; /* Asegura que el botón esté por encima de las estrellas */
+        }
 
-    button:hover {
-      background: rgba(127, 0, 255, 1);
-    }
+        button:hover {
+            background-color: #006600; /* Cambia lentamente a verde oscuro */
+        }
 
-    /* Espacio 3D */
-    div.espacio3D {
-      width: 300px;
-      height: 300px;
-      margin: auto;
-      border: 1px solid rgba(127, 0, 255, 0.5);
-      position: relative;
-      perspective-origin: center -50%;
-      perspective: 500px;
-      transform: scale(0.75);
-    }
+        /* Estilo de las estrellas */
+        .estrella {
+            position: absolute;
+            font-size: 20px;
+            color: #ffffff;
+            animation: caer 3s linear infinite;
+        }
 
-    div.cubo3D {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-style: preserve-3d;
-      transform: translateZ(-150px);
-      animation: gira 3s infinite linear;
-    }
+        @keyframes caer {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110%);
+                opacity: 0;
+            }
+        }
 
-    div.base {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background-color: rgba(0, 0, 0, 0.15);
-      transform: translateX(75px) translateY(75px) rotateX(90deg) translateZ(-200px);
-      box-shadow: 0 0 50px 100px rgba(0, 0, 0, 0.15);
-    }
-
-    aside.cara {
-      position: absolute;
-      width: 298px;
-      height: 298px;
-      background-color: rgba(127, 0, 255, 0.25);
-      border: 1px solid rgba(127, 0, 255, 0.75);
-      color: #fff;
-      font-size: 3em;
-      text-align: center;
-      line-height: 298px;
-      box-shadow: 0px 0px 5px rgba(127, 0, 255, 0.75);
-    }
-
-    aside.cara1 { transform: translateZ(150px); }
-    aside.cara2 { transform: rotateY(180deg) translateZ(150px); }
-    aside.cara3 { transform: rotateY(-90deg) translateZ(150px); }
-    aside.cara4 { transform: rotateY(90deg) translateZ(150px); }
-    aside.cara5 { transform: rotateX(-90deg) translateZ(150px); }
-    aside.cara6 { transform: rotateX(90deg) translateZ(150px); }
-
-    @keyframes gira {
-      0% { transform: translateZ(-150px) rotateY(0deg); }
-      100% { transform: translateZ(-150px) rotateY(360deg); }
-    }
-
-    @keyframes fondoCambio {
-      0% { background-color: black; }
-      100% { background-color: #001f3f; }
-    }
-
-    /* Imagen rotante después de recargar */
-    body.imagen-activa {
-      animation: none;
-      background: url('def.jpg') no-repeat center;
-      background-size: cover;
-    }
-
-    body.imagen-activa .espacio3D {
-      display: none;
-    }
-
-    body.imagen-activa .imagen-rotante {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: url('eyes.jpg') no-repeat center;
-      background-size: cover;
-      animation: moverImagen 4s infinite alternate ease-in-out;
-    }
-
-    @keyframes moverImagen {
-      0% { top: 0; left: 0; }
-      25% { top: 0; left: calc(100% - 200px); }
-      50% { top: calc(100% - 200px); left: calc(100% - 200px); }
-      75% { top: calc(100% - 200px); left: 0; }
-      100% { top: 0; left: 0; }
-    }
-  </style>
+        /* Estilo del mensaje "End" */
+        #endMessage {
+            font-size: 36px;
+            color: rgba(255, 255, 255, 0.534);
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <button onclick="activarImagen()">ON</button>
+    <button id="efectoBtn">TRACK</button>
+    <audio id="audio" src="get.mp3"></audio>
+    <div id="endMessage">End</div>
 
-  <div class="espacio3D">
-    <div class="cubo3D">
-      <div class="base"></div>
-      <aside class="cara cara1">H</aside>
-      <aside class="cara cara2">E</aside>
-      <aside class="cara cara3">N</aside>
-      <aside class="cara cara4">R</aside>
-      <aside class="cara cara5">Y</aside>
-      <aside class="cara cara6">T</aside>
-    </div>
-  </div>
+    <script>
+        const efectoBtn = document.getElementById("efectoBtn");
+        const audio = document.getElementById("audio");
+        const endMessage = document.getElementById("endMessage");
+        let parpadeo;
 
-  <div class="imagen-rotante" style="display: none;"></div>
+        // Evento para el botón
+        efectoBtn.addEventListener("click", () => {
+            // Reproducir el audio
+            audio.play();
 
-  <script>
-    function activarImagen() {
-      document.body.classList.add('imagen-activa');
-      const imagen = document.querySelector('.imagen-rotante');
-      imagen.style.display = 'block';
-    }
-  </script>
+            // Iniciar el parpadeo si no está activo
+            if (!parpadeo) {
+                parpadeo = setInterval(() => {
+                    document.body.style.backgroundColor =
+                        document.body.style.backgroundColor === "black" ? "purple" : "black";
+                }, 500);
+            }
+
+            // Desaparecer el botón y mostrar el mensaje "End"
+            efectoBtn.style.display = "none";
+            endMessage.style.display = "block";
+        });
+
+        // Crear estrellas aleatorias
+        function crearEstrella() {
+            const estrella = document.createElement("div");
+            estrella.classList.add("estrella");
+            estrella.textContent = "⋆"; // Carácter estrella "⋆"
+
+            // Posición inicial aleatoria
+            estrella.style.left = Math.random() * window.innerWidth + "px";
+            estrella.style.top = Math.random() * window.innerHeight - 20 + "px";
+
+            // Tamaño aleatorio
+            const tamaño = Math.random() * 10 + 10; // Entre 10px y 20px
+            estrella.style.fontSize = tamaño + "px";
+
+            // Velocidad aleatoria
+            const duracion = Math.random() * 2 + 2; // Entre 2s y 4s
+            estrella.style.animationDuration = duracion + "s";
+
+            document.body.appendChild(estrella);
+
+            // Eliminar estrella después de que termine de caer
+            estrella.addEventListener("animationend", () => {
+                estrella.remove();
+            });
+        }
+
+        // Generar estrellas continuamente
+        setInterval(crearEstrella, 200); // Cada 200ms
+    </script>
 </body>
 </html>
